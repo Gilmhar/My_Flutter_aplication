@@ -28,36 +28,41 @@ class _LoginPageState extends State<LoginPage> {
             child: Image.asset("assets/image/beach_wave.png"),
           ),
           Transform.translate(
-            offset: const Offset(0, -140) ,
+            offset: const Offset(0, -135),
             child: Center(
-              child: Card(
-                margin: const EdgeInsets.only(left: 20, right: 20, top: 260),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            labelText: "Usuario:",
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.cyan))),
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            labelText: "Contraseña:",
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.cyan))),
-                        obscureText: true,
-                      ),
-                      const SizedBox(height: 20,),
-                      Theme(
-                        data: Theme.of(context).copyWith(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white)),
-                        child: ElevatedButton(
+              child: SingleChildScrollView(
+                child: Card(
+                  elevation: 12,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                  margin: const EdgeInsets.only(left: 20, right: 20, top: 260),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextFormField(
+                          decoration: const InputDecoration(
+                              labelText: "Usuario:",
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.cyan))),
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                              labelText: "Contraseña:",
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.cyan))),
+                          obscureText: true,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.cyan,
                               padding: const EdgeInsets.all(20)),
@@ -77,26 +82,32 @@ class _LoginPageState extends State<LoginPage> {
                                   height: 20,
                                   width: 20,
                                   margin: const EdgeInsets.only(left: 20),
-                                  child: const CircularProgressIndicator(),
+                                  child: const CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white),
+                                  ),
                                 )
                             ],
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('¿No estás regitrado?'),
-                          TextButton(
-                            style: TextButton.styleFrom(foregroundColor: Colors.amber[700]),
-                            onPressed: () {},
-                            child: const Text('Registrate')),
-                        ],
-                      )
-                    ],
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('¿No estás regitrado?'),
+                            TextButton(
+                                style: TextButton.styleFrom(
+                                    foregroundColor: Colors.amber[700]),
+                                onPressed: () {
+                                  _showRegister(context);
+                                },
+                                child: const Text('Registrate')),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -113,5 +124,9 @@ class _LoginPageState extends State<LoginPage> {
         _loading = true;
       });
     }
+  }
+  
+  void _showRegister(BuildContext context) {
+    Navigator.of(context).pushNamed('/register');
   }
 }
