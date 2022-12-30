@@ -7,18 +7,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: '/',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Colors.cyanAccent, 
-        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white)
-      ),
-      onGenerateRoute: (RouteSettings settings) {
-       return MaterialPageRoute(builder: (BuildContext context)=>const LoginPage());
-      } ,
+      home: LoginPage(),
     );
   }
 }

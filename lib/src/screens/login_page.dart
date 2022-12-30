@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:my_aplication/src/screens/register_form.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -101,7 +103,8 @@ class _LoginPageState extends State<LoginPage> {
                                 style: TextButton.styleFrom(
                                     foregroundColor: Colors.amber[700]),
                                 onPressed: () {
-                                  _showRegister(context);
+                                  Navigator.push(context, 
+                                      MaterialPageRoute(builder: (context) => const RegisterForm(),));
                                 },
                                 child: const Text('Registrate')),
                           ],
@@ -126,7 +129,5 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
   
-  void _showRegister(BuildContext context) {
-    Navigator.of(context).pushNamed('/register');
-  }
+  
 }
