@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_aplication/src/screens/register_form.dart';
+import 'package:my_aplication/src/screens/custom_sufix_icon.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -47,9 +48,12 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         TextFormField(
                           decoration: const InputDecoration(
-                              labelText: "Usuario:",
+                              labelText: "Correo electrónico:",
                               focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.cyan))),
+                                  borderSide: BorderSide(color: Colors.cyan)),
+                                  hintText: 'Tu correo@cuenta.com',
+                                  suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+                                  ),
                         ),
                         const SizedBox(
                           height: 40,
@@ -58,7 +62,10 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: const InputDecoration(
                               labelText: "Contraseña:",
                               focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.cyan))),
+                                  borderSide: BorderSide(color: Colors.cyan)),
+                                  hintText: 'Tu contraseña',
+                                  suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+                                  ),
                           obscureText: true,
                         ),
                         const SizedBox(
@@ -104,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                                     foregroundColor: Colors.amber[700]),
                                 onPressed: () {
                                   Navigator.push(context, 
-                                      MaterialPageRoute(builder: (context) => const RegisterForm(),));
+                                      MaterialPageRoute(builder: (_) => const RegisterForm(),));
                                 },
                                 child: const Text('Registrate')),
                           ],
