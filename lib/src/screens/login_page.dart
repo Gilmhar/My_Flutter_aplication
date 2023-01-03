@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_aplication/comm/gen_text_form_field.dart';
 
 import 'package:my_aplication/src/screens/register_form.dart';
-import 'package:my_aplication/src/screens/custom_sufix_icon.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,6 +12,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _loading = false;
+
+  final _conUserId = TextEditingController();
+  final _conPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,50 +48,15 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 20.0),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              enabledBorder: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30.0)),
-                                borderSide: BorderSide(color: Colors.cyan),
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30.0)),
-                                  borderSide: BorderSide(color: Colors.amber)),
-                              prefixIcon: const Icon(Icons.person),
-                              hintText: 'User name',
-                              fillColor: Colors.grey[200],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 20.0),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              enabledBorder: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30.0)),
-                                borderSide: BorderSide(color: Colors.cyan),
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30.0)),
-                                  borderSide: BorderSide(color: Colors.amber)),
-                              prefixIcon: const Icon(Icons.person),
-                              hintText: 'Password',
-                              fillColor: Colors.grey[200],
-                            ),
-                          ),
-                        ),
+                        GetTextFormfield(controller: _conUserId, hintName: 'Usuario', icon: Icons.person),
+                        const SizedBox(height: 5.0),
+                        GetTextFormfield(controller: _conPassword, hintName: 'Contraseña', icon: Icons.person, isObscureText: true,),
                         const SizedBox(
                           height: 20,
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              shape:  StadiumBorder(),
+                              shape:  const StadiumBorder(),
                               backgroundColor: Colors.cyan,
                               padding: const EdgeInsets.all(20)),
                           onPressed: () {
