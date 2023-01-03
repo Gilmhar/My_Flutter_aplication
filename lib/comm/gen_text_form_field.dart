@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:my_aplication/comm/gen_toast_text_field.dart';
 
+// ignore: must_be_immutable
 class GetTextFormfield extends StatelessWidget {
   TextEditingController controller;
   String hintName;
   IconData icon;
   bool isObscureText;
   TextInputType inputType;
+  
 
   GetTextFormfield(
-      {required this.controller,
+      {super.key, required this.controller,
       required this.hintName,
       required this.icon,
       this.isObscureText = false,
@@ -22,6 +25,16 @@ class GetTextFormfield extends StatelessWidget {
         controller: controller,
         obscureText: isObscureText,
         keyboardType: inputType,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Por favor ingresa $hintName';
+          }
+          if (hintName == "Curp" && !validateCurp(value)) {
+            return 'Por favor ingresa un curp válido';
+          }
+          return null;
+        },
+        // onSaved: (newValue) => controller.text = newValue!,
         decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
