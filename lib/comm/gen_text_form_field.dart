@@ -8,10 +8,10 @@ class GetTextFormfield extends StatelessWidget {
   IconData icon;
   bool isObscureText;
   TextInputType inputType;
-  
 
   GetTextFormfield(
-      {super.key, required this.controller,
+      {super.key,
+      required this.controller,
       required this.hintName,
       required this.icon,
       this.isObscureText = false,

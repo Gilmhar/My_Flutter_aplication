@@ -1,4 +1,4 @@
-class UserModel{
+class UserModel {
   late String userId;
   late String userUser;
   late String userName;
@@ -9,7 +9,16 @@ class UserModel{
   late String userCorp;
   late String userPassword;
 
-  UserModel(this.userId, this.userUser, this.userName, this.userAName, this.userCurp, this.userEmail, this.userPhone, this.userCorp, this.userPassword);
+  UserModel(
+      this.userId,
+      this.userUser,
+      this.userName,
+      this.userAName,
+      this.userCurp,
+      this.userEmail,
+      this.userPhone,
+      this.userCorp,
+      this.userPassword);
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{

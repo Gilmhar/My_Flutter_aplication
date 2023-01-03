@@ -8,13 +8,12 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dart:io' as io;
 
-class DbHelper{
-
+class DbHelper {
   static Database? _db;
 
   static const String dbName = 'my_apliaction.db';
   static const String tableUser = 'user';
-  static const int version= 1;
+  static const int version = 1;
 
   static const String cUserID = 'user_id';
   static const String cUserUser = 'user_user';
@@ -35,29 +34,30 @@ class DbHelper{
 
     return _db;
   }
-  
+
   initDb() async {
     io.Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, dbName);
     var db = await openDatabase(path, version: version, onCreate: _onCreate);
     return db;
   }
-  _onCreate(Database db, int intVersion) async{
-   await db.execute("CREATE TABLE $tableUser ("
-      " $cUserID TEXT, " 
-      " $cUserUser TEXT, " 
-      " $cUserName TEXT, "
-      " $cUserLastname TEXT, "
-      " $cUserCurp TEXT, "
-      " $cEmail TEXT, "
-      " $cPhone TEXT, "
-      " $cCorp TEXT, "
-      " $cPassword TEXT, "
-      "PRIMARY KEY($cUserID)"
-      ")"); 
+
+  _onCreate(Database db, int intVersion) async {
+    await db.execute("CREATE TABLE $tableUser ("
+        " $cUserID TEXT, "
+        " $cUserUser TEXT, "
+        " $cUserName TEXT, "
+        " $cUserLastname TEXT, "
+        " $cUserCurp TEXT, "
+        " $cEmail TEXT, "
+        " $cPhone TEXT, "
+        " $cCorp TEXT, "
+        " $cPassword TEXT, "
+        "PRIMARY KEY($cUserID)"
+        ")");
   }
 
-   Future<int?> saveData(UserModel user) async {
+  Future<int?> saveData(UserModel user) async {
     var dbClient = await db;
     var res = await dbClient!.insert(tableUser, user.toMap());
     return res;

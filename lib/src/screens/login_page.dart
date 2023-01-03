@@ -4,6 +4,7 @@ import 'package:my_aplication/comm/gen_text_form_field.dart';
 import 'package:my_aplication/comm/gen_toast_text_field.dart';
 import 'package:my_aplication/database_handler/db_helper.dart';
 import 'package:my_aplication/models/user_model.dart';
+import 'package:my_aplication/src/screens/homeForm.dart';
 import 'package:my_aplication/src/screens/register_form.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,8 +18,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final Future<SharedPreferences> _pref = SharedPreferences.getInstance();
   final _formKey = GlobalKey<FormState>();
-  
-  
+
   bool _loading = false;
 
   final _conUserId = TextEditingController();
@@ -36,20 +36,16 @@ class _LoginPageState extends State<LoginPage> {
     String password = _conPassword.text;
 
     if (uid.isEmpty) {
-      alertDialog(context, "Please Enter User ID");
+      alertDialog(context, "Por favor Ingresa un ID de usuario");
     } else if (password.isEmpty) {
-      alertDialog(context, "Please Enter Password");
+      alertDialog(context, "Por favor ingresa tu contraseña");
     } else {
       await dbHelper.getLoginUser(uid, password).then((userData) {
         if (userData != null) {
-          setSP(userData).whenComplete(() {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (_) => const LoginPage()),
-                (Route<dynamic> route) => false);
-          });
-          } else {
-          alertDialog(context, "Error: User Not Found");
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const HomeForm()),
+              (Route<dynamic> route) => false);
         }
       }).catchError((error) {
         print(error);
@@ -57,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

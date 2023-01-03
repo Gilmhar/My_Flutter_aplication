@@ -36,26 +36,26 @@ class _RegisterFormState extends State<RegisterForm> {
     dbHelper = DbHelper();
   }
 
-  signUp() async{
-
+  signUp() async {
     String uid = _conUserId.text;
     String uuser = _conUser.text;
     String uname = _conName.text;
     String uaname = _conAName.text;
     String curp = _conCurp.text;
-    String email= _conEmail.text;
-    String phone= _conPhone.text;
-    String corp= _conCorp.text;
-    String password= _conPassword.text;
+    String email = _conEmail.text;
+    String phone = _conPhone.text;
+    String corp = _conCorp.text;
+    String password = _conPassword.text;
     String cpassword = _conCPassword.text;
 
     if (_formKey.currentState!.validate()) {
-      if(password!=cpassword){
+      if (password != cpassword) {
         alertDialog(context, 'Las contraseñas no coinciden');
-      } else{
+      } else {
         _formKey.currentState!.save();
-        
-        UserModel uModel = UserModel(uid, uuser, uname, uaname, curp, email, phone, corp, password);
+
+        UserModel uModel = UserModel(
+            uid, uuser, uname, uaname, curp, email, phone, corp, password);
         await dbHelper.saveData(uModel).then((userData) {
           alertDialog(context, "Usuario Creado");
 
@@ -143,15 +143,17 @@ class _RegisterFormState extends State<RegisterForm> {
                         inputType: TextInputType.name,
                       ),
                       GetTextFormfield(
-                          controller: _conPassword,
-                          hintName: 'Contraseña',
-                          icon: Icons.lock,
-                          isObscureText: true,),
+                        controller: _conPassword,
+                        hintName: 'Contraseña',
+                        icon: Icons.lock,
+                        isObscureText: true,
+                      ),
                       GetTextFormfield(
-                          controller: _conCPassword,
-                          hintName: 'Confirma tu contraseña',
-                          icon: Icons.lock,
-                          isObscureText: true,),
+                        controller: _conCPassword,
+                        hintName: 'Confirma tu contraseña',
+                        icon: Icons.lock,
+                        isObscureText: true,
+                      ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -169,7 +171,8 @@ class _RegisterFormState extends State<RegisterForm> {
                           children: [
                             const Text(
                               'Crear Usuario',
-                              style: TextStyle(fontSize: 20, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                             if (_loading)
                               Container(
@@ -177,8 +180,8 @@ class _RegisterFormState extends State<RegisterForm> {
                                 width: 20,
                                 margin: const EdgeInsets.only(left: 20),
                                 child: const CircularProgressIndicator(
-                                  valueColor:
-                                      AlwaysStoppedAnimation<Color>(Colors.white),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white),
                                 ),
                               )
                           ],
