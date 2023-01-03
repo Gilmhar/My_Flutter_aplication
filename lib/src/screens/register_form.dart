@@ -15,107 +15,59 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      body: Stack(
-        children: [
-          Transform.translate(
-            offset: const Offset(0, -400),
-            child: Center(
-              child: SingleChildScrollView(
-                child: Card(
-                  elevation: 12,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
-                  ),
-                  margin: const EdgeInsets.only(left: 20, right: 20, top: 260),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextFormField(
-                          decoration: const InputDecoration(
-                              labelText: "Usuario:",
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.cyan))),
+      appBar: AppBar(
+        title: const Text('Registra un usuario'),
+        backgroundColor: Colors.amber[700],
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                margin: const EdgeInsets.only(top: 20.0),
+                child: TextFormField(
+                  decoration:  InputDecoration(
+                    enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                        borderSide: BorderSide(color: Colors.transparent),
                         ),
-                        const SizedBox(
-                          height: 40,
+                        focusedBorder:const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(color: Colors.cyan)
                         ),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                              labelText: "Contraseña:",
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.cyan))),
-                          obscureText: true,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.cyan,
-                              padding: const EdgeInsets.all(20)),
-                          onPressed: () {
-                            _login(context);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Registrar',
-                                style:
-                                    TextStyle(fontSize: 20, color: Colors.white),
-                              ),
-                              if (_loading)
-                                Container(
-                                  height: 20,
-                                  width: 20,
-                                  margin: const EdgeInsets.only(left: 20),
-                                  child: const CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.white),
-                                  ),
-                                )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('¿Ya tienes una cuenta?'),
-                            TextButton(
-                                style: TextButton.styleFrom(
-                                    foregroundColor: Colors.amber[700]),
-                                onPressed: () {
-                                  Navigator.push(context, 
-                                      MaterialPageRoute(builder: (_) => const LoginPage(),));
-                                },
-                                child: const Text('Inicia Sesión')),
-                          ],
-                        )
-                      ],
-                    ),
+                        prefixIcon: const Icon(Icons.person),
+                        hintText: 'User name',
+                        fillColor: Colors.grey[200],
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                margin: const EdgeInsets.only(top: 20.0),
+                child: TextFormField(
+                  decoration:  InputDecoration(
+                    enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                        borderSide: BorderSide(color: Colors.transparent),
+                        ),
+                        focusedBorder:const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(color: Colors.cyan)
+                        ),
+                        prefixIcon: const Icon(Icons.person),
+                        hintText: 'Password',
+                        fillColor: Colors.grey[200],
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+        ),
       ),
     );
   }
-
-  void _login(BuildContext context) {
-    if (!_loading) {
-      setState(() {
-        _loading = true;
-      });
-    }
-  }
-  
-  
 }
