@@ -48,15 +48,23 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        GetTextFormfield(controller: _conUserId, hintName: 'Usuario', icon: Icons.person),
+                        GetTextFormfield(
+                            controller: _conUserId,
+                            hintName: 'Usuario',
+                            icon: Icons.person),
                         const SizedBox(height: 5.0),
-                        GetTextFormfield(controller: _conPassword, hintName: 'Contraseña', icon: Icons.person, isObscureText: true,),
+                        GetTextFormfield(
+                          controller: _conPassword,
+                          hintName: 'Contraseña',
+                          icon: Icons.person,
+                          isObscureText: true,
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              shape:  const StadiumBorder(),
+                              shape: const StadiumBorder(),
                               backgroundColor: Colors.cyan,
                               padding: const EdgeInsets.all(20)),
                           onPressed: () {
