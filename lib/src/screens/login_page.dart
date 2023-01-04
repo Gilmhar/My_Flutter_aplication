@@ -4,7 +4,7 @@ import 'package:my_aplication/comm/gen_text_form_field.dart';
 import 'package:my_aplication/comm/gen_toast_text_field.dart';
 import 'package:my_aplication/database_handler/db_helper.dart';
 import 'package:my_aplication/models/user_model.dart';
-import 'package:my_aplication/src/screens/homeForm.dart';
+import 'package:my_aplication/src/screens/home_form.dart';
 import 'package:my_aplication/src/screens/register_form.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,8 +18,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final Future<SharedPreferences> _pref = SharedPreferences.getInstance();
   final _formKey = GlobalKey<FormState>();
-
-  bool _loading = false;
 
   final _conUserId = TextEditingController();
   final _conPassword = TextEditingController();
@@ -106,27 +104,11 @@ class _LoginPageState extends State<LoginPage> {
                               backgroundColor: Colors.cyan,
                               padding: const EdgeInsets.all(20)),
                           onPressed: () {
-                            _login(context);
+                            login();
                           },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Iniciar Sesión',
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
-                              ),
-                              if (_loading)
-                                Container(
-                                  height: 20,
-                                  width: 20,
-                                  margin: const EdgeInsets.only(left: 20),
-                                  child: const CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.white),
-                                  ),
-                                )
-                            ],
+                          child: const Text(
+                            'Iniciar Sesión',
+                            style: TextStyle(fontSize: 20, color: Colors.white),
                           ),
                         ),
                         const SizedBox(
@@ -159,13 +141,5 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
-  }
-
-  void _login(BuildContext context) {
-    if (!_loading) {
-      setState(() {
-        _loading = true;
-      });
-    }
   }
 }

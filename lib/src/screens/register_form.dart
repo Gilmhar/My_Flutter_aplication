@@ -164,27 +164,10 @@ class _RegisterFormState extends State<RegisterForm> {
                             padding: const EdgeInsets.all(20)),
                         onPressed: () {
                           signUp();
-                          _login(context);
                         },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Crear Usuario',
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            ),
-                            if (_loading)
-                              Container(
-                                height: 20,
-                                width: 20,
-                                margin: const EdgeInsets.only(left: 20),
-                                child: const CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
-                                ),
-                              )
-                          ],
+                        child: const Text(
+                          'Crear Usuario',
+                          style: TextStyle(fontSize: 20, color: Colors.white),
                         ),
                       ),
                       const SizedBox(
@@ -216,13 +199,5 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
       ),
     );
-  }
-
-  void _login(BuildContext context) {
-    if (!_loading) {
-      setState(() {
-        _loading = true;
-      });
-    }
   }
 }

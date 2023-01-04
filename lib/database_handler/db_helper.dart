@@ -18,7 +18,7 @@ class DbHelper {
   static const String cUserID = 'user_id';
   static const String cUserUser = 'user_user';
   static const String cUserName = 'user_name';
-  static const String cUserLastname = 'user_lastname';
+  static const String cUserAname = 'user_aname';
   static const String cUserCurp = 'user_curp';
   static const String cEmail = 'email';
   static const String cPhone = 'phone';
@@ -47,7 +47,7 @@ class DbHelper {
         " $cUserID TEXT, "
         " $cUserUser TEXT, "
         " $cUserName TEXT, "
-        " $cUserLastname TEXT, "
+        " $cUserAname TEXT, "
         " $cUserCurp TEXT, "
         " $cEmail TEXT, "
         " $cPhone TEXT, "
