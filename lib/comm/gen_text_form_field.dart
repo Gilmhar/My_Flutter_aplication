@@ -29,8 +29,11 @@ class GetTextFormfield extends StatelessWidget {
           if (value == null || value.isEmpty) {
             return 'Por favor ingresa $hintName';
           }
-          if (hintName == "Curp" && !validateCurp(value)) {
+          else if (hintName == "Curp" && !validateCurp(value)) {
             return 'Por favor ingresa un curp válido';
+          }
+          else if (hintName == "E-mail" && !validateEmail(value)) {
+            return 'Por favor ingresa un email válido';
           }
           return null;
         },

@@ -5,7 +5,6 @@ import 'package:my_aplication/comm/gen_toast_text_field.dart';
 import 'package:my_aplication/models/user_model.dart';
 import 'package:my_aplication/src/screens/login_page.dart';
 import 'package:my_aplication/database_handler/db_helper.dart';
-// import 'package:toast/toast.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -15,11 +14,10 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-  bool _loading = false;
   final _formKey = GlobalKey<FormState>();
 
-  final _conUserId = TextEditingController();
-  final _conUser = TextEditingController();
+  final _conUserID = TextEditingController();
+  final _conUserUser = TextEditingController();
   final _conName = TextEditingController();
   final _conAName = TextEditingController();
   final _conCurp = TextEditingController();
@@ -28,7 +26,7 @@ class _RegisterFormState extends State<RegisterForm> {
   final _conCorp = TextEditingController();
   final _conPassword = TextEditingController();
   final _conCPassword = TextEditingController();
-  var dbHelper = DbHelper();
+  var dbHelper;
 
   @override
   void initState() {
@@ -36,9 +34,9 @@ class _RegisterFormState extends State<RegisterForm> {
     dbHelper = DbHelper();
   }
 
-  signUp() async {
-    String uid = _conUserId.text;
-    String uuser = _conUser.text;
+  signUp() async{
+    String uid = _conUserID.text;
+    String uuser = _conUserUser.text;
     String uname = _conName.text;
     String uaname = _conAName.text;
     String curp = _conCurp.text;
@@ -52,21 +50,19 @@ class _RegisterFormState extends State<RegisterForm> {
       if (password != cpassword) {
         alertDialog(context, 'Las contraseñas no coinciden');
       } else {
-        _formKey.currentState!.save();
+        _formKey.currentState?.save();
 
-        UserModel uModel = UserModel(
-            uid, uuser, uname, uaname, curp, email, phone, corp, password);
-        await dbHelper.saveData(uModel).then((userData) {
-          alertDialog(context, "Usuario Creado");
+        UserModel uModel = UserModel(uid, uuser, uname, uaname, curp, email, phone, corp, password);
+        await dbHelper.saveData(uModel).then((userData){
+          alertDialog(context, 'Usuario creado');
 
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => const LoginPage()));
-        }).catchError((error) {
-          // ignore: avoid_print
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
+
+        }).catchError((error){
           print(error);
-          alertDialog(context, "Error: No se pudo guradar el registro");
+          alertDialog(context, 'Error: No se pudo guardar el registro');
         });
-      }
+      }  
     }
   }
 
@@ -96,13 +92,13 @@ class _RegisterFormState extends State<RegisterForm> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       GetTextFormfield(
-                        controller: _conUserId,
+                        controller: _conUserID,
                         hintName: 'ID de Usuario',
                         icon: Icons.person,
                         inputType: TextInputType.number,
                       ),
                       GetTextFormfield(
-                          controller: _conUser,
+                          controller: _conUserUser,
                           hintName: 'Nombre de usuario',
                           icon: Icons.person,
                           inputType: TextInputType.name),

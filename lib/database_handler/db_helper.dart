@@ -1,8 +1,6 @@
-// ignore: unused_import
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
 import 'package:my_aplication/models/user_model.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -18,7 +16,7 @@ class DbHelper {
   static const String cUserID = 'user_id';
   static const String cUserUser = 'user_user';
   static const String cUserName = 'user_name';
-  static const String cUserAname = 'user_aname';
+  static const String cUserAName = 'user_aname';
   static const String cUserCurp = 'user_curp';
   static const String cEmail = 'email';
   static const String cPhone = 'phone';
@@ -47,7 +45,7 @@ class DbHelper {
         " $cUserID TEXT, "
         " $cUserUser TEXT, "
         " $cUserName TEXT, "
-        " $cUserAname TEXT, "
+        " $cUserAName TEXT, "
         " $cUserCurp TEXT, "
         " $cEmail TEXT, "
         " $cPhone TEXT, "
@@ -57,7 +55,7 @@ class DbHelper {
         ")");
   }
 
-  Future<int?> saveData(UserModel user) async {
+  Future<int> saveData(UserModel user) async {
     var dbClient = await db;
     var res = await dbClient!.insert(tableUser, user.toMap());
     return res;
@@ -74,19 +72,5 @@ class DbHelper {
     }
 
     return null;
-  }
-
-  Future<int> updateUser(UserModel user) async {
-    var dbClient = await db;
-    var res = await dbClient!.update(tableUser, user.toMap(),
-        where: '$cUserID = ?', whereArgs: [user.userId]);
-    return res;
-  }
-
-  Future<int> deleteUser(String userId) async {
-    var dbClient = await db;
-    var res = await dbClient!
-        .delete(tableUser, where: '$cUserID = ?', whereArgs: [userId]);
-    return res;
   }
 }

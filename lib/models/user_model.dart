@@ -1,49 +1,49 @@
 class UserModel {
-  late String userId;
-  late String userUser;
-  late String userName;
-  late String userAName;
-  late String userCurp;
-  late String userEmail;
-  late String userPhone;
-  late String userCorp;
-  late String userPassword;
+  late String user_id;
+  late String user_user;
+  late String user_name;
+  late String user_aname;
+  late String user_curp;
+  late String email;
+  late String phone;
+  late String corp;
+  late String password;
 
   UserModel(
-      this.userId,
-      this.userUser,
-      this.userName,
-      this.userAName,
-      this.userCurp,
-      this.userEmail,
-      this.userPhone,
-      this.userCorp,
-      this.userPassword);
+      this.user_id,
+      this.user_user,
+      this.user_name,
+      this.user_aname,
+      this.user_curp,
+      this.email,
+      this.phone,
+      this.corp,
+      this.password);
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
-      'user_id': userId,
-      'user_user': userUser,
-      'user_name': userName,
-      'user_aname': userAName,
-      'user_curp': userCurp,
-      'email': userEmail,
-      'phone': userPhone,
-      'corp': userCorp,
-      'password': userPassword
+      'user_id': user_id,
+      'user_user': user_user,
+      'user_name': user_name,
+      'user_aname': user_aname,
+      'user_curp': user_curp,
+      'email': email,
+      'phone': phone,
+      'corp': corp,
+      'password': password
     };
     return map;
   }
 
   UserModel.fromMap(Map<String, dynamic> map) {
-    userId = map['user_id'];
-    userUser = map['user_user'];
-    userName = map['user_name'];
-    userAName = map['user_aname'];
-    userCurp = map['user_curp'];
-    userEmail = map['email'];
-    userPhone = map['phone'];
-    userCorp = map['corp'];
-    userPassword = map['password'];
+    user_id = map['user_id'];
+    user_user = map['user_user'];
+    user_name = map['user_name'];
+    user_aname = map['user_aname'];
+    user_curp = map['user_curp'];
+    email = map['email'];
+    phone = map['phone'];
+    corp = map['corp'];
+    password = map['password'];
   }
 }
